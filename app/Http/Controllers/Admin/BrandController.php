@@ -63,8 +63,8 @@ class BrandController extends Controller
 
             if($request->post('id')>0){
                 $arrImage=DB::table('brands')->where(['id'=>$request->post('id')])->get();
-                if(Storage::exists('/media/brand/'.$arrImage[0]->image, ['disk' => 'public_upload'])){
-                    Storage::delete('/media/brand/'.$arrImage[0]->image, ['disk' => 'public_upload']);
+                if(Storage::disk('public_upload')->exists('/media/brand/'.$arrImage[0]->image)){
+                    Storage::disk('public_upload')->delete('/media/brand/'.$arrImage[0]->image);
                 }
             }
 

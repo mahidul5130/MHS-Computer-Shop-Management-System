@@ -120,9 +120,9 @@
                           @endfor
                         </select>
                       </form>
-                      <!-- <p class="aa-prod-category">
+                      <p class="aa-prod-category">
                       Model: <a href="#">{{$product[0]->model}}</a>
-                      </p> -->
+                      </p>
                     </div>
                     <div class="aa-prod-view-bottom">
                       <a class="aa-add-to-cart-btn" href="javascript:void(0)" onclick="add_to_cart('{{$product[0]->id}}','{{$product_attr[$product[0]->id][0]->size_id}}','{{$product_attr[$product[0]->id][0]->color_id}}')">Add To Cart</a>
