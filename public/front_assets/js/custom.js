@@ -252,16 +252,23 @@ jQuery(function($){
         noUiSlider.create(skipSlider, {
             range: {
                 'min': 0,
-                '10%': 100,
-                '20%': 300,
-                '30%': 500,
-                '40%': 700,
-                '50%': 900,
-                '60%': 1100,
-                '70%': 1300,
-                '80%': 1500,
-                '90%': 1700,
-                'max': 1900
+                '5%':  25000,
+                '10%': 50000,
+                '15%': 100000,
+                '20%': 125000,
+                '25%': 150000,
+                '30%': 175000,
+                '35%': 200000,
+                '40%': 225000,
+                '45%': 250000,
+                '50%': 275000,
+                '65%': 300000,
+                '70%': 325000,
+                '75%': 350000,
+                '80%': 375000,
+                '90%': 400000,
+                '95%': 425000,
+                'max': 450000
             },
             snap: true,
             connect: true,
@@ -421,11 +428,11 @@ function add_to_cart(id,size_str_id,color_str_id){
            var html='<ul>';
            jQuery.each(result.data, function(arrKey,arrVal){
              totalPrice=parseInt(totalPrice)+(parseInt(arrVal.qty)*parseInt(arrVal.price));
-             html+='<li><a class="aa-cartbox-img" href="#"><img src="'+PRODUCT_IMAGE+'/'+arrVal.image+'" alt="img"></a><div class="aa-cartbox-info"><h4><a href="#">'+arrVal.name+'</a></h4><p> '+arrVal.qty+' * Rs  '+arrVal.price+'</p></div></li>';
+             html+='<li><a class="aa-cartbox-img" href="#"><img src="'+PRODUCT_IMAGE+'/'+arrVal.image+'" alt="img"></a><div class="aa-cartbox-info"><h4><a href="#">'+arrVal.name+'</a></h4><p> '+arrVal.qty+' * BDT  '+arrVal.price+'</p></div></li>';
            });
           
          }
-         html+='<li><span class="aa-cartbox-total-title">Total</span><span class="aa-cartbox-total-price">Rs '+totalPrice+'</span></li>';
+         html+='<li><span class="aa-cartbox-total-title">Total</span><span class="aa-cartbox-total-price">BDT '+totalPrice+'</span></li>';
          html+='</ul><a class="aa-cartbox-checkout aa-primary-btn" href="cart">Cart</a>';
          console.log(html);
          jQuery('.aa-cartbox-summary').html(html);
@@ -433,6 +440,8 @@ function add_to_cart(id,size_str_id,color_str_id){
       }
     });
   }
+  window.location.href=window.location.href;
+
 }
 
 function deleteCartProduct(pid,size,color,attr_id){
@@ -440,7 +449,7 @@ function deleteCartProduct(pid,size,color,attr_id){
   jQuery('#size_id').val(size);
   jQuery('#qty').val(0)
   add_to_cart(pid,size,color);
-  //jQuery('#total_price_'+attr_id).html('Rs '+qty*price);
+  //jQuery('#total_price_'+attr_id).html('BDT '+qty*price);
   jQuery('#cart_box'+attr_id).hide();
 }
 
@@ -450,7 +459,7 @@ function updateQty(pid,size,color,attr_id,price){
   var qty=jQuery('#qty'+attr_id).val();
   jQuery('#qty').val(qty)
   add_to_cart(pid,size,color);
-  jQuery('#total_price_'+attr_id).html('Rs '+qty*price);
+  jQuery('#total_price_'+attr_id).html('BDT '+qty*price);
 }
 
 function sort_by(){

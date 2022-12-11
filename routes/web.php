@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[FrontController::class,'index']);
+Route::get('',[FrontController::class,'index']);
 Route::get('category/{id}',[FrontController::class,'category']);
 Route::get('product/{id}',[FrontController::class,'product']);
 Route::post('add_to_cart',[FrontController::class,'add_to_cart']);

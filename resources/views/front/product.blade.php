@@ -59,8 +59,8 @@
                   <div class="aa-product-view-content">
                     <h3>{{$product[0]->name}}</h3>
                     <div class="aa-price-block">
-                      <span class="aa-product-view-price">Rs {{$product_attr[$product[0]->id][0]->price}}&nbsp;&nbsp;</span>
-                      <span class="aa-product-view-price"><del>Rs {{$product_attr[$product[0]->id][0]->mrp}}</del></span>
+                      <span class="aa-product-view-price">BDT {{$product_attr[$product[0]->id][0]->price}}&nbsp;&nbsp;</span>
+                      <span class="aa-product-view-price"><del>BDT {{$product_attr[$product[0]->id][0]->mrp}}</del></span>
 
                       <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
 
@@ -223,7 +223,7 @@
                         <a class="aa-add-card-btn" href="{{url('product/'.$productArr->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                         <figcaption>
                             <h4 class="aa-product-title"><a href="{{url('product/'.$productArr->slug)}}">{{$productArr->name}}</a></h4>
-                            <span class="aa-product-price">Rs {{$related_product_attr[$productArr->id][0]->price}}</span><span class="aa-product-price"><del>Rs {{$related_product_attr[$productArr->id][0]->mrp}}</del></span>
+                            <span class="aa-product-price">BDT {{$related_product_attr[$productArr->id][0]->price}}</span><span class="aa-product-price"><del>BDT {{$related_product_attr[$productArr->id][0]->mrp}}</del></span>
                         </figcaption>
                         </figure>                          
                     </li>  

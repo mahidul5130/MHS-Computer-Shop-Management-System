@@ -297,7 +297,7 @@ Back
                               <input id="price" name="price[]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="{{$pAArr['price']}}" required>
                            </div>
                            <div class="col-md-3">
-                              <label for="size_id" class="control-label mb-1"> Size</label>
+                              <label for="size_id" class="control-label mb-1"> Ram</label>
                               <select id="size_id" name="size_id[]" class="form-control">
                                  <option value="">Select</option>
                                  @foreach($rams as $list)

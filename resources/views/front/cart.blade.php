@@ -45,9 +45,9 @@
                         <br/>COLOR: {{$data->color}}
                         @endif
                         </td>
-                        <td>Rs {{$data->price}}</td>
+                        <td>BDT {{$data->price}}</td>
                         <td><input id="qty{{$data->attr_id}}" class="aa-cart-quantity" type="number" value="{{$data->qty}}" onchange="updateQty('{{$data->pid}}','{{$data->size}}','{{$data->color}}','{{$data->attr_id}}','{{$data->price}}')"></td>
-                        <td id="total_price_{{$data->attr_id}}">Rs {{$data->price*$data->qty}}</td>
+                        <td id="total_price_{{$data->attr_id}}">BDT {{$data->price*$data->qty}}</td>
                       </tr>
                       @endforeach
                       <tr>

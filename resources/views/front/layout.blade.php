@@ -125,7 +125,7 @@
                       <a class="aa-cartbox-img" href="#"><img src="{{asset('storage/media/'.$cartItem->image)}}" alt="img"></a>
                       <div class="aa-cartbox-info">
                         <h4><a href="#">{{$cartItem->name}}</a></h4>
-                        <p>{{$cartItem->qty}} * Rs {{$cartItem->price}}</p>
+                        <p>{{$cartItem->qty}} * BDT {{$cartItem->price}}</p>
                       </div>
                     </li>
                     @endforeach                  
@@ -134,7 +134,7 @@
                         Total
                       </span>
                       <span class="aa-cartbox-total-price">
-                        Rs {{$totalPrice}}
+                        BDT {{$totalPrice}}
                       </span>
                     </li>
                   </ul>
