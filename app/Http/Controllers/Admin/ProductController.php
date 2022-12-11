@@ -157,8 +157,8 @@ class ProductController extends Controller
         if($request->hasfile('image')){
             if($request->post('id')>0){                
                 $arrImage=DB::table('products')->where(['id'=>$request->post('id')])->get();
-                if(Storage::exists('//media/'.$arrImage[0]->image, ['disk' => 'public_upload'])){
-                    Storage::delete('//media/'.$arrImage[0]->image, ['disk' => 'public_upload']);
+                if(Storage::exists('/media/banner/'.$arrImage[0]->image)){
+                    Storage::delete('/media/banner/'.$arrImage[0]->image);
                 }
             }
             $image=$request->file('image');
@@ -210,8 +210,8 @@ class ProductController extends Controller
             if($request->hasFile("attr_image.$key")){
                 if($paidArr[$key]!=''){ 
                     $arrImage=DB::table('products_attr')->where(['id'=>$paidArr[$key]])->get();
-                    if(Storage::exists('//media/'.$arrImage[0]->attr_image, ['disk' => 'public_upload'])){
-                        Storage::delete('//media/'.$arrImage[0]->attr_image, ['disk' => 'public_upload']);
+                    if(Storage::exists('/media/banner/'.$arrImage[0]->image)){
+                        Storage::delete('/media/banner/'.$arrImage[0]->image);
                     }
                 }
 
@@ -241,8 +241,8 @@ class ProductController extends Controller
 
                 if($piidArr[$key]!=''){ 
                     $arrImage=DB::table('product_images')->where(['id'=>$piidArr[$key]])->get();
-                    if(Storage::exists('//media/'.$arrImage[0]->images, ['disk' => 'public_upload'])){
-                        Storage::delete('//media/'.$arrImage[0]->images, ['disk' => 'public_upload']);
+                    if(Storage::exists('/media/banner/'.$arrImage[0]->image)){
+                        Storage::delete('/media/banner/'.$arrImage[0]->image);
                     }
                 }
 
@@ -250,7 +250,7 @@ class ProductController extends Controller
                 $images=$request->file("images.$key");
                 $ext=$images->extension();
                 $image_name=$rand.'.'.$ext;
-                $request->file("images.$key")->storeAs('/public/media',$image_name, ['disk' => 'public_upload']);
+                $request->file("images.$key")->storeAs('/media/brand',$image_name, ['disk' => 'public_upload']);
                 $productImageArr['images']=$image_name;
                 
                 if($piidArr[$key]!=''){

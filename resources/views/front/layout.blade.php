@@ -94,7 +94,7 @@
                 <!-- Text based logo -->
                 <a href="{{url('/')}}">
                   <span class="fa fa-shopping-cart"></span>
-                  <p>daily<strong>Shop</strong> <span>Your Shopping Partner</span></p>
+                  <p>MHS<strong>Computers</strong> <span>Best Computer Shop In Bangladesh</span></p>
                 </a>
                 <!-- img based logo -->
                 <!-- <a href="javascript:void(0)"><img src="img/logo.jpg" alt="logo img"></a> -->
@@ -147,7 +147,7 @@
               <!-- search box -->
               <div class="aa-search-box">
                 <form action="">
-                  <input type="text" id="search_str" placeholder="Search here ex. 'man' ">
+                  <input type="text" id="search_str" placeholder="Search here ex. 'Lenovo' ">
                   <button type="button" onclick="funSearch()"><span class="fa fa-search"></span></button>
                 </form>
               </div>

@@ -52,15 +52,15 @@ class HomeBannerController extends Controller
 
             if($request->post('id')>0){
                 $arrImage=DB::table('home_banners')->where(['id'=>$request->post('id')])->get();
-                if(Storage::exists('/public/media/banner/'.$arrImage[0]->image)){
-                    Storage::delete('/public/media/banner/'.$arrImage[0]->image);
+                if(Storage::exists('/media/banner/'.$arrImage[0]->image)){
+                    Storage::delete('/media/banner/'.$arrImage[0]->image);
                 }
             }
 
             $image=$request->file('image');
             $ext=$image->extension();
             $image_name=time().'.'.$ext;
-            $image->storeAs('/public/media/banner',$image_name);
+            $image->storeAs('/media/banner',$image_name, ['disk' => 'public_upload']);
             $model->image=$image_name;
 
         }
