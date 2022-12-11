@@ -1,9 +1,9 @@
 @extends('admin/layout')
-@section('page_title','Manage Size')
-@section('size_select','active')
+@section('page_title','Manage Ram')
+@section('ram_select','active')
 @section('container')
-    <h1 class="mb10">Manage Size</h1>
-    <a href="{{url('admin/size')}}">
+    <h1 class="mb10">Manage Ram</h1>
+    <a href="{{url('admin/ram')}}">
         <button type="button" class="btn btn-success">
             Back
         </button>
@@ -14,7 +14,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <form action="{{route('size.manage_size_process')}}" method="post">
+                                        <form action="{{route('ram.manage_ram_process')}}" method="post">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="size" class="control-label mb-1">Size </label>

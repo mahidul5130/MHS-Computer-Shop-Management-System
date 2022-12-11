@@ -53,9 +53,9 @@
                                 <i class="fas fa-tag"></i>Coupon</a>
                         </li>
 
-                        <li class="@yield('size_select')">
-                            <a href="{{url('admin/size')}}">
-                                <i class="fas fa-window-maximize"></i>Size</a>
+                        <li class="@yield('ram_select')">
+                            <a href="{{url('admin/ram')}}">
+                                <i class="fas fa-window-maximize"></i>Ram</a>
                         </li>
 
                         <li class="@yield('brand_select')">
@@ -120,9 +120,9 @@
                                 <i class="fas fa-tag"></i>Coupon</a>
                         </li>
 
-                        <li class="@yield('size_select')">
-                            <a href="{{url('admin/size')}}">
-                                <i class="fas fa-window-maximize"></i>Size</a>
+                        <li class="@yield('ram_select')">
+                            <a href="{{url('admin/ram')}}">
+                                <i class="fas fa-window-maximize"></i>Ram</a>
                         </li>
 
                         <li class="@yield('brand_select')">

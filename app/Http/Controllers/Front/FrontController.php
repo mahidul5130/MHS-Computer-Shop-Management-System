@@ -31,7 +31,7 @@ class FrontController extends Controller
             foreach($result['home_categories_product'][$list->id] as $list1){
                 $result['home_product_attr'][$list1->id]=
                     DB::table('products_attr')
-                    ->leftJoin('sizes','sizes.id','=','products_attr.size_id')
+                    ->leftJoin('rams','rams.id','=','products_attr.size_id')
                     ->leftJoin('colors','colors.id','=','products_attr.color_id')
                     ->where(['products_attr.products_id'=>$list1->id])
                     ->get();
@@ -54,7 +54,7 @@ class FrontController extends Controller
         foreach($result['home_featured_product'][$list->id] as $list1){
             $result['home_featured_product_attr'][$list1->id]=
                 DB::table('products_attr')
-                ->leftJoin('sizes','sizes.id','=','products_attr.size_id')
+                ->leftJoin('rams','rams.id','=','products_attr.size_id')
                 ->leftJoin('colors','colors.id','=','products_attr.color_id')
                 ->where(['products_attr.products_id'=>$list1->id])
                 ->get();
@@ -70,7 +70,7 @@ class FrontController extends Controller
         foreach($result['home_tranding_product'][$list->id] as $list1){
             $result['home_tranding_product_attr'][$list1->id]=
                 DB::table('products_attr')
-                ->leftJoin('sizes','sizes.id','=','products_attr.size_id')
+                ->leftJoin('rams','rams.id','=','products_attr.size_id')
                 ->leftJoin('colors','colors.id','=','products_attr.color_id')
                 ->where(['products_attr.products_id'=>$list1->id])
                 ->get();
@@ -86,7 +86,7 @@ class FrontController extends Controller
         foreach($result['home_discounted_product'][$list->id] as $list1){
             $result['home_discounted_product_attr'][$list1->id]=
                 DB::table('products_attr')
-                ->leftJoin('sizes','sizes.id','=','products_attr.size_id')
+                ->leftJoin('rams','rams.id','=','products_attr.size_id')
                 ->leftJoin('colors','colors.id','=','products_attr.color_id')
                 ->where(['products_attr.products_id'=>$list1->id])
                 ->get();
@@ -157,7 +157,7 @@ class FrontController extends Controller
         foreach($result['product'] as $list1){
            
             $query1=DB::table('products_attr');
-            $query1=$query1->leftJoin('sizes','sizes.id','=','products_attr.size_id');
+            $query1=$query1->leftJoin('rams','rams.id','=','products_attr.size_id');
             $query1=$query1->leftJoin('colors','colors.id','=','products_attr.color_id');
             $query1=$query1->where(['products_attr.products_id'=>$list1->id]);
             $query1=$query1->get();
@@ -193,7 +193,7 @@ class FrontController extends Controller
         foreach($result['product'] as $list1){
             $result['product_attr'][$list1->id]=
                 DB::table('products_attr')
-                ->leftJoin('sizes','sizes.id','=','products_attr.size_id')
+                ->leftJoin('rams','rams.id','=','products_attr.size_id')
                 ->leftJoin('colors','colors.id','=','products_attr.color_id')
                 ->where(['products_attr.products_id'=>$list1->id])
                 ->get();
@@ -214,7 +214,7 @@ class FrontController extends Controller
         foreach($result['related_product'] as $list1){
             $result['related_product_attr'][$list1->id]=
                 DB::table('products_attr')
-                ->leftJoin('sizes','sizes.id','=','products_attr.size_id')
+                ->leftJoin('rams','rams.id','=','products_attr.size_id')
                 ->leftJoin('colors','colors.id','=','products_attr.color_id')
                 ->where(['products_attr.products_id'=>$list1->id])
                 ->get();
@@ -252,10 +252,10 @@ class FrontController extends Controller
         
         $result=DB::table('products_attr')
             ->select('products_attr.id')
-            ->leftJoin('sizes','sizes.id','=','products_attr.size_id')
+            ->leftJoin('rams','rams.id','=','products_attr.size_id')
             ->leftJoin('colors','colors.id','=','products_attr.color_id')
             ->where(['products_id'=>$product_id])
-            ->where(['sizes.size'=>$size_id])
+            ->where(['rams.size'=>$size_id])
             ->where(['colors.color'=>$color_id])
             ->get();
         $product_attr_id=$result[0]->id;
@@ -300,11 +300,11 @@ class FrontController extends Controller
         $result=DB::table('cart')
             ->leftJoin('products','products.id','=','cart.product_id')
             ->leftJoin('products_attr','products_attr.id','=','cart.product_attr_id')
-            ->leftJoin('sizes','sizes.id','=','products_attr.size_id')
+            ->leftJoin('rams','rams.id','=','products_attr.size_id')
             ->leftJoin('colors','colors.id','=','products_attr.color_id')
             ->where(['user_id'=>$uid])
             ->where(['user_type'=>$user_type])
-            ->select('cart.qty','products.name','products.image','sizes.size','colors.color','products_attr.price','products.slug','products.id as pid','products_attr.id as attr_id')
+            ->select('cart.qty','products.name','products.image','rams.size','colors.color','products_attr.price','products.slug','products.id as pid','products_attr.id as attr_id')
             ->get();    
         return response()->json(['msg'=>$msg,'data'=>$result,'totalItem'=>count($result)]);
     }
@@ -321,11 +321,11 @@ class FrontController extends Controller
         $result['list']=DB::table('cart')
             ->leftJoin('products','products.id','=','cart.product_id')
             ->leftJoin('products_attr','products_attr.id','=','cart.product_attr_id')
-            ->leftJoin('sizes','sizes.id','=','products_attr.size_id')
+            ->leftJoin('rams','rams.id','=','products_attr.size_id')
             ->leftJoin('colors','colors.id','=','products_attr.color_id')
             ->where(['user_id'=>$uid])
             ->where(['user_type'=>$user_type])
-            ->select('cart.qty','products.name','products.image','sizes.size','colors.color','products_attr.price','products.slug','products.id as pid','products_attr.id as attr_id')
+            ->select('cart.qty','products.name','products.image','rams.size','colors.color','products_attr.price','products.slug','products.id as pid','products_attr.id as attr_id')
             ->get();
         return view('front.cart',$result);
     }
@@ -350,7 +350,7 @@ class FrontController extends Controller
             foreach($result['product'] as $list1){
                
                 $query1=DB::table('products_attr');
-                $query1=$query1->leftJoin('sizes','sizes.id','=','products_attr.size_id');
+                $query1=$query1->leftJoin('rams','rams.id','=','products_attr.size_id');
                 $query1=$query1->leftJoin('colors','colors.id','=','products_attr.color_id');
                 $query1=$query1->where(['products_attr.products_id'=>$list1->id]);
                 $query1=$query1->get();
@@ -798,11 +798,11 @@ class FrontController extends Controller
     {
         $result['orders_details']=
                 DB::table('orders_details')
-                ->select('orders.*','orders_details.price','orders_details.qty','products.name as pname','products_attr.attr_image','sizes.size','colors.color','orders_status.orders_status')
+                ->select('orders.*','orders_details.price','orders_details.qty','products.name as pname','products_attr.attr_image','rams.size','colors.color','orders_status.orders_status')
                 ->leftJoin('orders','orders.id','=','orders_details.orders_id')
                 ->leftJoin('products_attr','products_attr.id','=','orders_details.products_attr_id')
                 ->leftJoin('products','products.id','=','products_attr.products_id')
-                ->leftJoin('sizes','sizes.id','=','products_attr.size_id')
+                ->leftJoin('rams','rams.id','=','products_attr.size_id')
                 ->leftJoin('orders_status','orders_status.id','=','orders.order_status')
                 ->leftJoin('colors','colors.id','=','products_attr.color_id')
                 ->where(['orders.id'=>$id])

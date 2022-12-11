@@ -300,7 +300,7 @@ Back
                               <label for="size_id" class="control-label mb-1"> Size</label>
                               <select id="size_id" name="size_id[]" class="form-control">
                                  <option value="">Select</option>
-                                 @foreach($sizes as $list)
+                                 @foreach($rams as $list)
                                     @if($pAArr['size_id']==$list->id)
                                     <option value="{{$list->id}}" selected>{{$list->size}}</option>
                                     @else

@@ -2,7 +2,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CouponController;
-use App\Http\Controllers\Admin\SizeController;
+use App\Http\Controllers\Admin\RamController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BrandController;
@@ -84,12 +84,12 @@ Route::group(['middleware'=>'admin_auth'],function(){
     Route::get('admin/coupon/delete/{id}',[CouponController::class,'delete']);
     Route::get('admin/coupon/status/{status}/{id}',[CouponController::class,'status']);
 
-    Route::get('admin/size',[SizeController::class,'index']);
-    Route::get('admin/size/manage_size',[SizeController::class,'manage_size']);
-    Route::get('admin/size/manage_size/{id}',[SizeController::class,'manage_size']);
-    Route::post('admin/size/manage_size_process',[SizeController::class,'manage_size_process'])->name('size.manage_size_process');
-    Route::get('admin/cousizepon/delete/{id}',[SizeController::class,'delete']);
-    Route::get('admin/size/status/{status}/{id}',[SizeController::class,'status']);
+    Route::get('admin/ram',[RamController::class,'index']);
+    Route::get('admin/ram/manage_ram',[RamController::class,'manage_ram']);
+    Route::get('admin/ram/manage_ram/{id}',[RamController::class,'manage_ram']);
+    Route::post('admin/ram/manage_ram_process',[RamController::class,'manage_ram_process'])->name('ram.manage_ram_process');
+    Route::get('admin/ram/delete/{id}',[RamController::class,'delete']);
+    Route::get('admin/ram/status/{status}/{id}',[RamController::class,'status']);
 
     Route::get('admin/color',[ColorController::class,'index']);
     Route::get('admin/color/manage_color',[ColorController::class,'manage_color']);

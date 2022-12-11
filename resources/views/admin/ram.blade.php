@@ -1,6 +1,6 @@
 @extends('admin/layout')
-@section('page_title','Size')
-@section('size_select','active')
+@section('page_title','Ram')
+@section('ram_select','active')
 @section('container')
     @if(session()->has('message'))
     <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
@@ -10,10 +10,10 @@
         </button>
     </div> 
     @endif                           
-    <h1 class="mb10">Size</h1>
-    <a href="{{url('admin/size/manage_size')}}">
+    <h1 class="mb10">Ram</h1>
+    <a href="{{url('admin/ram/manage_ram')}}">
         <button type="button" class="btn btn-success">
-            Add Size
+            Add Ram
         </button>
     </a>
     <div class="row m-t-30">
@@ -24,7 +24,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Size</th>
+                            <th>Ram</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -34,15 +34,15 @@
                             <td>{{$list->id}}</td>
                             <td>{{$list->size}}</td>
                             <td>
-                                <a href="{{url('admin/size/manage_size/')}}/{{$list->id}}"><button type="button" class="btn btn-success">Edit</button></a>
+                                <a href="{{url('admin/ram/manage_ram/')}}/{{$list->id}}"><button type="button" class="btn btn-success">Edit</button></a>
 
                                 @if($list->status==1)
-                                    <a href="{{url('admin/size/status/0')}}/{{$list->id}}"><button type="button" class="btn btn-primary">Active</button></a>
+                                    <a href="{{url('admin/ram/status/0')}}/{{$list->id}}"><button type="button" class="btn btn-primary">Active</button></a>
                                  @elseif($list->status==0)
-                                    <a href="{{url('admin/size/status/1')}}/{{$list->id}}"><button type="button" class="btn btn-warning">Deactive</button></a>
+                                    <a href="{{url('admin/ram/status/1')}}/{{$list->id}}"><button type="button" class="btn btn-warning">Deactive</button></a>
                                 @endif
 
-                                <a href="{{url('admin/size/delete/')}}/{{$list->id}}"><button type="button" class="btn btn-danger">Delete</button></a>
+                                <a href="{{url('admin/ram/delete/')}}/{{$list->id}}"><button type="button" class="btn btn-danger">Delete</button></a>
                             </td>
                         </tr>
                         @endforeach
