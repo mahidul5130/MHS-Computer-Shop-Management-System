@@ -467,6 +467,7 @@ class FrontController extends Controller
     // Google callback
     public function handleGoogleCallback()
     {
+        
         $user = Socialite::driver('google')->user();
 
         $this->_registerOrLoginUser($user);
@@ -509,13 +510,13 @@ class FrontController extends Controller
             ->first();
 
 
-        if ($rememberme === null) {
+        // if ($remember === null) {
             setcookie('login_email', (string)$data->email, 100);
             setcookie('login_pwd', (string)Crypt::decrypt($result->password), 100);
-        } else {
-            setcookie('login_email', (string)$data->email, time() + 60 * 60 * 24 * 100);
-            setcookie('login_pwd', (string)Crypt::decrypt($result->password), time() + 60 * 60 * 24 * 100);
-        }
+        // } else {
+        //     setcookie('login_email', (string)$data->email, time() + 60 * 60 * 24 * 100);
+        //     setcookie('login_pwd', (string)Crypt::decrypt($result->password), time() + 60 * 60 * 24 * 100);
+        // }
 
         
         session()->put('FRONT_USER_LOGIN', true);
