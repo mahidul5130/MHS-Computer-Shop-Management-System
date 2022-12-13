@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[FrontController::class,'index']);
 Route::get('',[FrontController::class,'index']);
+Route::get('registration',[FrontController::class,'index'])->name('index');
 Route::get('category/{id}',[FrontController::class,'category']);
 Route::get('product/{id}',[FrontController::class,'product']);
 Route::post('add_to_cart',[FrontController::class,'add_to_cart']);
@@ -36,6 +37,11 @@ Route::get('search/{str}',[FrontController::class,'search']);
 Route::get('registration',[FrontController::class,'registration']);
 Route::post('registration_process',[FrontController::class,'registration_process'])->name('registration.registration_process');
 Route::post('login_process',[FrontController::class,'login_process'])->name('login.login_process');
+
+// Google login
+Route::get('login/google', [FrontController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('login/google/callback', [FrontController::class, 'handleGoogleCallback']);
+
 Route::get('logout', function () {
     session()->forget('FRONT_USER_LOGIN');
     session()->forget('FRONT_USER_ID');
