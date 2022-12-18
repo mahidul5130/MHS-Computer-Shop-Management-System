@@ -259,10 +259,10 @@ class FrontController extends Controller
         $product_attr_id = $result[0]->id;
 
         $getAvaliableQty = getAvaliableQty($product_id, $product_attr_id);
-        $finalAvaliable = $getAvaliableQty[0]->pqty - $getAvaliableQty[0]->qty;
-        if ($pqty > $finalAvaliable) {
-            return response()->json(['msg' => "not_avaliable", 'data' => "Only $finalAvaliable left"]);
-        }
+        // $finalAvaliable = $getAvaliableQty[0]->pqty - $getAvaliableQty[0]->qty;
+        // if ($pqty > $finalAvaliable) {
+        //     return response()->json(['msg' => "not_avaliable", 'data' => "Only $finalAvaliable left"]);
+        // }
 
         $check = DB::table('cart')
             ->where(['user_id' => $uid])
