@@ -127,7 +127,7 @@
                         </tr>
                          <tr>
                           <th>Total</th>
-                          <td id="total_price">INR {{$totalPrice}}</td>
+                          <td id="total_price">B {{$totalPrice}}</td>
                         </tr>
                       </tfoot>
                     </table>

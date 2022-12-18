@@ -594,7 +594,7 @@ function applyCouponCode() {
         if (result.status == 'success') {
           jQuery('.show_coupon_box').removeClass('hide');
           jQuery('#coupon_code_str').html(coupon_code);
-          jQuery('#total_price').html('INR ' + result.totalPrice);
+          jQuery('#total_price').html('BDT ' + result.totalPrice);
           jQuery('.apply_coupon_code_box').hide();
         } else {
 
@@ -620,7 +620,7 @@ function remove_coupon_code() {
         if (result.status == 'success') {
           jQuery('.show_coupon_box').addClass('hide');
           jQuery('#coupon_code_str').html('');
-          jQuery('#total_price').html('INR ' + result.totalPrice);
+          jQuery('#total_price').html('B ' + result.totalPrice);
           jQuery('.apply_coupon_code_box').show();
         } else {
 
