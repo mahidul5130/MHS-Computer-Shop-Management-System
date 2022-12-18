@@ -313,12 +313,12 @@
               <button class="aa-browse-btn" type="submit" id="btnLogin">Login</button>
 
               <!-- <div class="flex items-center justify-end mt-4"> -->
-                <a href="{{ route('login.google') }}">
-                  <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;">
-                </a>
+              <a href="{{ route('login.google') }}">
+                <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;">
+              </a>
               <!-- </div> -->
 
-              
+
               <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme" name="rememberme" {{$is_remember}}> Remember me </label>
 
               <div id="login_msg"></div>
@@ -364,6 +364,37 @@
   <script type="text/javascript" src="{{asset('front_assets/js/slick.js')}}"></script>
   <script type="text/javascript" src="{{asset('front_assets/js/nouislider.js')}}"></script>
   <script src="{{asset('front_assets/js/custom.js')}}"></script>
+
+
+
+
+
+
+
 </body>
+
+
+<script>
+  var obj = {};
+  obj.cus_name = $('#customer_name').val();
+  obj.cus_phone = $('#mobile').val();
+  obj.cus_email = $('#email').val();
+  obj.cus_addr1 = $('#address').val();
+  obj.amount = $('#total_amount').val();
+
+  $('#sslczPayBtn').prop('postdata', obj);
+
+
+  (function(window, document) {
+    var loader = function() {
+      var script = document.createElement("script"),
+        tag = document.getElementsByTagName("script")[0];
+      script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+      tag.parentNode.insertBefore(script, tag);
+    };
+
+    window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+  })(window, document);
+</script>
 
 </html>

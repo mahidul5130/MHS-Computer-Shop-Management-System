@@ -38,6 +38,16 @@ Route::get('registration',[FrontController::class,'registration']);
 Route::post('registration_process',[FrontController::class,'registration_process'])->name('registration.registration_process');
 Route::post('login_process',[FrontController::class,'login_process'])->name('login.login_process');
 
+
+Route::post('/pay-via-ajax', [FrontController::class, 'payViaAjax']);
+
+Route::post('/success', [FrontController::class, 'success']);
+Route::post('/fail', [FrontController::class, 'fail']);
+Route::post('/cancel', [FrontController::class, 'cancel']);
+
+Route::post('/ipn', [FrontController::class, 'ipn']);
+
+
 // Google login
 Route::get('login/google', [FrontController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('login/google/callback', [FrontController::class, 'handleGoogleCallback']);
