@@ -43,7 +43,7 @@
                           <div class="row">
                             <div class="col-md-4">
                               <div class="aa-checkout-single-bill">
-                                <input id="customer_name" type="text" placeholder=" Name*" value="{{$customers['name']}}" name="name" required>
+                                <input id="name" type="text" placeholder=" Name*" value="{{$customers['name']}}" name="name" required>
                               </div>
                             </div>
                             <div class="col-md-4">
@@ -62,24 +62,24 @@
                           <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <textarea cols="8" rows="3" name="address" required placeholder="Enter Address*">{{$customers['address']}}</textarea>
+                                <textarea id = 'address' cols="8" rows="3" name="address" required placeholder="Enter Address*">{{$customers['address']}}</textarea>
                               </div>
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-md-4">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="City / Town*" value="{{$customers['city']}}" name="city" required>
+                                <input id = 'city' type="text" placeholder="City / Town*" value="{{$customers['city']}}" name="city" required>
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="State*" value="{{$customers['state']}}" name="state" required>
+                                <input id = 'state' type="text" placeholder="State*" value="{{$customers['state']}}" name="state" required>
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="Postcode / ZIP*" value="{{$customers['zip']}}" name="zip" required>
+                                <input id = 'zip' type="text" placeholder="Postcode / ZIP*" value="{{$customers['zip']}}" name="zip" required>
                               </div>
                             </div>
                           </div>
@@ -127,7 +127,7 @@
                         </tr>
                         <tr>
                           <th>Total</th>
-                          <td id="total_price">B {{$totalPrice}}</td>
+                          <td id="total_price" value = "{{$totalPrice}}"> BDT {{$totalPrice}}</td>
                         </tr>
                       </tfoot>
                     </table>

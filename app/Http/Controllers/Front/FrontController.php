@@ -915,7 +915,7 @@ class FrontController extends Controller
 
     public function payViaAjax(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $requestData = (array) json_decode($request->cart_json);
 
         # Here you have to receive all the order data to initate the payment.
@@ -923,7 +923,7 @@ class FrontController extends Controller
         # In orders table order uniq identity is "transaction_id","status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
         $post_data = array();
-        $post_data['total_amount'] = '10'; # You cant not pay less than 10
+        $post_data['total_amount'] = $requestData['amount']; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
 
@@ -932,15 +932,15 @@ class FrontController extends Controller
         $post_data['cus_email'] = $requestData['cus_email'];
         $post_data['cus_add1'] = 'Customer Address';
         $post_data['cus_add2'] = "";
-        $post_data['cus_city'] = "";
-        $post_data['cus_state'] = "";
-        $post_data['cus_postcode'] = "";
+        $post_data['cus_city'] = $requestData['cus_city'];
+        $post_data['cus_state'] = $requestData['cus_state'];
+        $post_data['cus_postcode'] = $requestData['cus_zip'];
         $post_data['cus_country'] = "Bangladesh";
-        $post_data['cus_phone'] = '8801XXXXXXXXX';
+        $post_data['cus_phone'] = $requestData['cus_phone'];
         $post_data['cus_fax'] = "";
 
         # SHIPMENT INFORMATION
-        $post_data['ship_name'] = "Store Test";
+        $post_data['ship_name'] = "MHS Store";
         $post_data['ship_add1'] = "Dhaka";
         $post_data['ship_add2'] = "Dhaka";
         $post_data['ship_city'] = "Dhaka";

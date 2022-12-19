@@ -375,12 +375,37 @@
 
 
 <script>
+  const name = document.getElementById('name');
+  const email = document.getElementById('email');
+  const mobile = document.getElementById('mobile');
+  const address = document.getElementById('address');
+  const city = document.getElementById('city');
+  const state = document.getElementById('state');
+  const zip = document.getElementById('zip');
+  // const total_amount = document.getElementById('totalPrice');
+  const DigitalPaybutton = document.getElementById('sslczPayBtn');
+
   var obj = {};
-  obj.cus_name = $('#customer_name').val();
-  obj.cus_phone = $('#mobile').val();
-  obj.cus_email = $('#email').val();
-  obj.cus_addr1 = $('#address').val();
-  obj.amount = $('#total_amount').val();
+
+  function InputValueGetter() {
+    obj.cus_name = name.value;
+    obj.cus_phone = mobile.value;
+    obj.cus_email = email.value;
+    obj.cus_addr1 = address.value;
+    obj.cus_city = city.value;
+    obj.cus_state = state.value;
+    obj.cus_zip = zip.value;
+    // obj.amount = "{{$totalPrice}}";
+  }
+  obj.amount = "{{$totalPrice}}";
+  
+  DigitalPaybutton.addEventListener('click', InputValueGetter);
+  // var obj = {};
+  // obj.cus_name = $('#customer_name').val();
+  // obj.cus_phone = $('#mobile').val();
+  // obj.cus_email = $('#email').val();
+  // obj.cus_addr1 = $('#address').val();
+  // obj.amount = $('#total_amount').val();
 
   $('#sslczPayBtn').prop('postdata', obj);
 
