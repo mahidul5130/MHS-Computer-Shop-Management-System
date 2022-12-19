@@ -382,6 +382,7 @@
   const city = document.getElementById('city');
   const state = document.getElementById('state');
   const zip = document.getElementById('zip');
+  const coupon_code = document.getElementById('coupon_code');
   // const total_amount = document.getElementById('totalPrice');
   const DigitalPaybutton = document.getElementById('sslczPayBtn');
 
@@ -395,6 +396,7 @@
     obj.cus_city = city.value;
     obj.cus_state = state.value;
     obj.cus_zip = zip.value;
+    obj.cus_coupon_code = coupon_code.value;
     // obj.amount = "{{$totalPrice}}";
   }
   obj.amount = "{{$totalPrice}}";

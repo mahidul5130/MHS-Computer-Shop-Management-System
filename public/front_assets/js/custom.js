@@ -402,7 +402,7 @@ function add_to_cart(id, size_str_id, color_str_id) {
     color_id = 'no';
   }
   if (size_id == '' && size_id != 'no') {
-    jQuery('#add_to_cart_msg').html('<div class="alert alert-danger fade in alert-dismissible mt10"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>Please select size</div>');
+    jQuery('#add_to_cart_msg').html('<div class="alert alert-danger fade in alert-dismissible mt10"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>Please select RAM size</div>');
   } else if (color_id == '' && color_id != 'no') {
     jQuery('#add_to_cart_msg').html('<div class="alert alert-danger fade in alert-dismissible mt10"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>Please select color</div>');
   } else {

@@ -513,8 +513,8 @@ class FrontController extends Controller
 
 
         // if ($remember === null) {
-        setcookie('login_email', (string)$data->email, 100);
-        setcookie('login_pwd', (string)Crypt::decrypt($result->password), 100);
+        setcookie('login_email', (string)$data->email, 60 * 60 * 24 * 100);
+        setcookie('login_pwd', (string)Crypt::decrypt($result->password), 60 * 60 * 24 * 100);
         // } else {
         //     setcookie('login_email', (string)$data->email, time() + 60 * 60 * 24 * 100);
         //     setcookie('login_pwd', (string)Crypt::decrypt($result->password), time() + 60 * 60 * 24 * 100);
@@ -924,13 +924,14 @@ class FrontController extends Controller
 
         $post_data = array();
         $post_data['total_amount'] = $requestData['amount']; # You cant not pay less than 10
+        $post_data['cus_coupon_code'] = $requestData['cus_coupon_code']; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
 
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = $requestData['cus_name'];
         $post_data['cus_email'] = $requestData['cus_email'];
-        $post_data['cus_add1'] = 'Customer Address';
+        $post_data['cus_add1'] = $requestData['cus_addr1'];
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = $requestData['cus_city'];
         $post_data['cus_state'] = $requestData['cus_state'];
@@ -960,20 +961,70 @@ class FrontController extends Controller
         $post_data['value_c'] = "ref003";
         $post_data['value_d'] = "ref004";
 
+        $uid = $request->session()->get('FRONT_USER_ID');
+
+        $coupon_value = 0;
+        if ($post_data['cus_coupon_code'] != '') {
+            $arr = apply_coupon_code($post_data['cus_coupon_code']);
+            $arr = json_decode($arr, true);
+            if ($arr['status'] == 'success') {
+                $coupon_value = $arr['coupon_code_value'];
+            } else {
+                return response()->json(['status' => 'false', 'msg' => $arr['msg']]);
+            }
+        }
+
+
+
 
         #Before  going to initiate the payment order status need to update as Pending.
+
+        $order_id = (int)(DB::table('orders')->max('id')) + 1;
+
+
         $update_product = DB::table('orders')
             ->where('txn_id', $post_data['tran_id'])
             ->updateOrInsert([
+                "id" => $order_id,
+                "customers_id" => $uid,
                 'name' => $post_data['cus_name'],
                 'email' => $post_data['cus_email'],
                 'mobile' => $post_data['cus_phone'],
                 'total_amt' => $post_data['total_amount'],
                 'payment_status' => 'Pending',
+                'payment_type' => 'Gateway',
                 'address' => $post_data['cus_add1'],
+                'city' => $post_data['cus_city'],
+                'state' => $post_data['cus_state'],
+                'country' => $post_data['cus_country'],
+                'pincode' => $post_data['cus_postcode'],
                 'txn_id' => $post_data['tran_id'],
-                'currency' => $post_data['currency']
+                'currency' => $post_data['currency'],
+                'coupon_code' => $post_data['cus_coupon_code'],
+                'coupon_value' => $coupon_value,
+                "order_status" => 1,
+                'added_on' => date('Y-m-d h:i:s')
             ]);
+
+        $getAddToCartTotalItem = getAddToCartTotalItem();
+
+
+        if ($order_id > 0) {
+            foreach ($getAddToCartTotalItem as $list) {
+                $prductDetailArr['product_id'] = $list->pid;
+                $prductDetailArr['products_attr_id'] = $list->attr_id;
+                $prductDetailArr['price'] = $list->price;
+                $prductDetailArr['qty'] = $list->qty;
+                $prductDetailArr['orders_id'] = $order_id;
+                DB::table('orders_details')->insert($prductDetailArr);
+            }
+            DB::table('cart')->where(['user_id' => $uid, 'user_type' => 'Reg'])->delete();
+            $request->session()->put('ORDER_ID', $order_id);
+        }
+
+
+        $post_data['total_amount'] = $post_data['total_amount'] -  $coupon_value;
+
 
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
@@ -987,7 +1038,7 @@ class FrontController extends Controller
 
     public function success(Request $request)
     {
-        echo "Transaction is Successful";
+        // echo "Transaction is Successful";
 
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
@@ -1013,13 +1064,17 @@ class FrontController extends Controller
                     ->where('txn_id', $tran_id)
                     ->update(['payment_status' => 'Processing']);
 
-                echo "<br >Transaction is successfully Completed";
+                // echo "<br >Transaction is successfully Completed";
+                return view('front.order_placed');
             }
         } else if ($order_detials->payment_status == 'Processing' || $order_detials->payment_status == 'Complete') {
             /*
              That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
              */
-            echo "Transaction is successfully Completed";
+            // echo "Transaction is successfully Completed";;
+
+            redirect("order_placed");
+            
         } else {
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
@@ -1092,7 +1147,8 @@ class FrontController extends Controller
                         ->where('txn_id', $tran_id)
                         ->update(['payment_status' => 'Processing']);
 
-                    echo "Transaction is successfully Completed";
+                    // echo "Transaction is successfully Completed";
+                    return view('front.order_placed');
                 }
             } else if ($order_details->payment_status == 'Processing' || $order_details->payment_status == 'Complete') {
 
