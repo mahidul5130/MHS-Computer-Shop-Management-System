@@ -143,11 +143,11 @@
                   <div class="aa-payment-method">
                     <label for="cod"><input type="radio" id="cod" name="payment_type" value="COD" checked> Cash on Delivery </label>
                     <label for="instamojo">
-                      <input type="radio" id="instamojo" name="payment_type" value="Gateway"> Via Instamojo </label>
+                      <input type="radio" id="instamojo" name="payment_type" value="Gateway" hidden></label>
 
-                    <input type="submit" value="Place Order" class="aa-browse-btn" id="btnPlaceOrder">
+                    <input type="submit" value="Cash On Delivery" class="aa-browse-btn" id="btnPlaceOrder">
 
-                    <button id="sslczPayBtn" token="if you have any token validation" postdata="" order="If you already have the transaction generated for current order" endpoint="/pay-via-ajax"> Pay Now</button>
+                    <button id="sslczPayBtn" token="if you have any token validation" postdata="" order="If you already have the transaction generated for current order" endpoint="/pay-via-ajax">Digital Payment</button>
                   </div>
 
                   <div id="order_place_msg"></div>
