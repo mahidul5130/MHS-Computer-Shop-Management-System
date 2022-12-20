@@ -1032,7 +1032,7 @@ class FrontController extends Controller
                 $prductDetailArr['orders_id'] = $order_id;
                 DB::table('orders_details')->insert($prductDetailArr);
             }
-            DB::table('cart')->where(['user_id' => $uid, 'user_type' => 'Reg'])->delete();
+            // DB::table('cart')->where(['user_id' => $uid, 'user_type' => 'Reg'])->delete();
             $request->session()->put('ORDER_ID', $order_id);
         }
 
@@ -1088,6 +1088,11 @@ class FrontController extends Controller
             // echo "Transaction is successfully Completed";;
 
             redirect("order_placed");
+
+            $uid = $request->session()->get('FRONT_USER_ID');
+
+            DB::table('cart')->where(['user_id' => $uid, 'user_type' => 'Reg'])->delete();
+
         } else {
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
