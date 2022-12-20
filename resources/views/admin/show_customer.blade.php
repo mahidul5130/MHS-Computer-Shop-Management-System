@@ -40,14 +40,14 @@
                             <td><strong>Zip</strong></td>
                             <td>{{$customer_list->zip}}</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td><strong>Company</strong></td>
                             <td>{{$customer_list->company}}</td>
-                        </tr>
-                        <tr>
+                        </tr> -->
+                        <!-- <tr>
                             <td><strong>GST Number</strong></td>
                             <td>{{$customer_list->gstin}}</td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td><strong>Created On</strong></td>
                             <td>{{\Carbon\Carbon::parse($customer_list->created_at)->format('d-m-Y h:i:s')}}</td>

@@ -1006,6 +1006,20 @@ class FrontController extends Controller
                 'added_on' => date('Y-m-d h:i:s')
             ]);
 
+        $update_customers = DB::table('customers')
+            ->where('id', $uid)
+            ->update([
+                'name' => $post_data['cus_name'],
+                'email' => $post_data['cus_email'],
+                'mobile' => $post_data['cus_phone'],
+                'address' => $post_data['cus_add1'],
+                'city' => $post_data['cus_city'],
+                'state' => $post_data['cus_state'],
+                'country' => $post_data['cus_country'],
+                'zip' => $post_data['cus_postcode'],
+                'updated_at' => date('Y-m-d h:i:s')
+            ]);
+
         $getAddToCartTotalItem = getAddToCartTotalItem();
 
 
@@ -1074,7 +1088,6 @@ class FrontController extends Controller
             // echo "Transaction is successfully Completed";;
 
             redirect("order_placed");
-            
         } else {
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
